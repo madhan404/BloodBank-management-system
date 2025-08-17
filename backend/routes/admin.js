@@ -422,6 +422,7 @@ router.get('/stats', auth, async (req, res) => {
  */
 router.get('/export/:type', auth, async (req, res) => {
   try {
+    const { type } = req.params;
     console.log('Export request received:', { type, userId: req.userId, userRole: req.userRole });
     
     if (req.userRole !== 'admin') {
@@ -429,7 +430,6 @@ router.get('/export/:type', auth, async (req, res) => {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    const { type } = req.params;
 
     // Create temp directory if it doesn't exist
     const tempDir = path.join(__dirname, '../temp');

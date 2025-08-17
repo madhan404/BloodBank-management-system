@@ -15,11 +15,11 @@ const app = express();
 //   origin: process.env.FRONTEND_URL || 'http://localhost:5173', 
 //   credentials: true 
 // }));
+// process.env.FRONTEND_URL
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://bloodbank-portal.netlify.app',
-  process.env.FRONTEND_URL
+  'https://bloodbank-portal.netlify.app'
 ];
 
 app.use(cors({
