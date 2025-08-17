@@ -34,7 +34,7 @@ import {
 import { DataGrid } from '@mui/x-data-grid';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
-import api, { ABS } from '../lib/api'; // <-- uses shared axios + absolute URL helper
+import api, { ABS } from '../lib/api';
 
 const TabPanel = ({ children, value, index }) => (
   <div hidden={value !== index}>
