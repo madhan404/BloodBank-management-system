@@ -34,7 +34,9 @@ import {
 import { DataGrid } from '@mui/x-data-grid';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
-import api, { ABS } from '../lib/api';
+// import api, { ABS } from '../lib/api';
+const API_BASE_URL = (import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:3000').replace(/\/$/, '');
+
 
 const TabPanel = ({ children, value, index }) => (
   <div hidden={value !== index}>
@@ -70,9 +72,9 @@ const StaffDashboard = () => {
   const loadDashboardData = async () => {
     try {
       const [pendingRes, approvedRes, statsRes] = await Promise.all([
-        api.get('/api/staff/pending-donors'),
-        api.get('/api/staff/approved-donors'),
-        api.get('/api/staff/stats'),
+        axios.get(`${API_BASE_URL}/api/staff/pending-donors`),
+        axios.get(`${API_BASE_URL}/api/staff/approved-donors`),
+        axios.get(`${API_BASE_URL}/api/staff/stats`),
       ]);
 
       setPendingDonors(pendingRes.data || []);
