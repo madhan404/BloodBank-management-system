@@ -261,7 +261,7 @@ import {
         <Box sx={{ bgcolor: 'grey.900', color: 'white', py: 3 }}>
           <Container maxWidth="lg">
             <Typography align="center">
-              © 2024 LifeSave Blood Bank. All rights reserved. | Emergency: +91 98765 43210
+              © 2025 LifeSave Blood Bank. All rights reserved. | Emergency: +91 98765 43210
             </Typography>
           </Container>
         </Box>
