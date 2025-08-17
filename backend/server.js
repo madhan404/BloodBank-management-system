@@ -13,8 +13,10 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://bloodbank-portal.netlify.app'
-];
+  'https://bloodbank-portal.netlify.app',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 
 app.use(cors({
   origin: function(origin, callback) {

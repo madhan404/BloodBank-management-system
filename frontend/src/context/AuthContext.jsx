@@ -1,82 +1,8 @@
-// import { createContext, useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { toast } from 'react-toastify';
-
-// const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:3000'; // no trailing slash
-// const AuthContext = createContext();
-
-// export const useAuth = () => {
-//   const context = useContext(AuthContext);
-//   if (!context) throw new Error('useAuth must be used within an AuthProvider');
-//   return context;
-// };
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => { checkAuthStatus(); }, []);
-
-//   const checkAuthStatus = async () => {
-//     try {
-//       const token = localStorage.getItem('token');
-//       if (!token) return; // no user
-//       const res = await axios.get(`${API_BASE_URL}/api/auth/verify`, {
-//         headers: { Authorization: `Bearer ${token}` }
-//       });
-//       setUser(res.data.user);
-//     } catch {
-//       localStorage.removeItem('token');
-//       setUser(null);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   const login = async (email, password) => {
-//     try {
-//       const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
-//       const { token, user } = res.data;
-//       localStorage.setItem('token', token);
-//       setUser(user);
-//       toast.success('Login successful!');
-//       return { ok: true, user };
-//     } catch (error) {
-//       const msg = error?.response?.data?.message || 'Login failed';
-//       toast.error(msg);
-//       return { ok: false, message: msg };
-//     }
-//   };
-
-//   const logout = () => {
-//     localStorage.removeItem('token');
-//     setUser(null);
-//     toast.success('Logged out successfully');
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{
-//       user,
-//       loading,
-//       login,
-//       logout,
-//       isAuthenticated: !!user,
-//       isAdmin: user?.role === 'admin',
-//       isStaff: user?.role === 'staff',
-//     }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-
-
-
 import { createContext, useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:3000' // no trailing slash
+const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:3000'
 const AuthContext = createContext(null)
 
 export const useAuth = () => {
@@ -147,3 +73,11 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   )
 }
+
+export const authHeader = () => {
+  const token = localStorage.getItem('token')
+  return token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+}
+
+
+

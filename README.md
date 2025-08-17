@@ -58,7 +58,7 @@ npm start
 Create a `.env` file and set:
 
 PORT=3000
-MONGODB_URI=your_mongodb_connection_string
+MONGODB_URI=mongodb://localhost:27017/bloodbank
 JWT_SECRET=your_jwt_secret_key
 FRONTEND_URL=http://localhost:5173
 
@@ -76,20 +76,52 @@ The backend runs on `http://localhost:3000` and the frontend on `http://localhos
 
 ## 🖼️ Screenshots
 
+### Home Page 
+![Home Page ](frontend/public/readme-assets/home-1.png)
+
+### Home Page
+![Home Page](frontend/public/readme-assets/home-2.png)
+
+
+### Donor registeration
+![Donor registeration](frontend/public/readme-assets/donor-register.png)
+
+### registeration checking Page
+![registeration checking Page](frontend/public/readme-assets/form-submit.png)
+
+### registered Success
+![registered Success](frontend/public/readme-assets/donor-submitted.png)
+
 ### Login Page
 ![Login Page](frontend/public/readme-assets/login.png)
 
-### Admin Dashboard
-![Admin Dashboard](frontend/public/readme-assets/admin.png)
+### Staff - Pending Approvals
+![Staff - Pending Approvals](frontend/public/readme-assets/staff-dashboard1.png)
 
-### Staff Dashboard
-![Staff Dashboard](frontend/public/readme-assets/staff.png)
+### Staff - Approved Donors
+![Staff Approved Donors](frontend/public/readme-assets/staff-dashboard2.png)
 
-### Donor Dashboard
-![Donor Dashboard](frontend/public/readme-assets/donor-dashboard.png) <!-- placeholder -->
+### Staff Dashboard - view applications
+![Staff Dashboard view applications](frontend/public/readme-assets/view-application.png)
 
-### User Management
-![User Management](frontend/public/readme-assets/user-management.png)
+### Admin - Staff Management
+![Admin - Staff Management](frontend/public/readme-assets/admin-staff-management.png)
+
+### Admin - Add Staff
+![Admin - Add Staff](frontend/public/readme-assets/add-staff.png)
+
+### Admin - Donor Management
+![Admin - Donor Management](frontend/public/readme-assets/admin-donor-management.png)
+
+### Admin - rejected-donor1
+![Admin - rejected-donor1](frontend/public/readme-assets/rejected-donor1.png)
+
+### Admin - rejected-donor2
+![Admin - rejected-donor2](frontend/public/readme-assets/rejected-donor2.png)
+
+### Admin - reports
+![Admin - reports](frontend/public/readme-assets/all-reports.png)
+
 
 ---
 

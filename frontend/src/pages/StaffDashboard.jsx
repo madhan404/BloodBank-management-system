@@ -35,7 +35,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useAuth } from '../context/AuthContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-// import api, { ABS } from '../lib/api';
+import{ ABS } from '../lib/api';
 const API_BASE_URL = (import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:3000').replace(/\/$/, '');
 
 
@@ -65,6 +65,20 @@ const StaffDashboard = () => {
 
   const { user, logout } = useAuth();
 
+   const authHeader = () => {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No auth token found');
+        toast.error('No authentication token found. Please login again.');
+        logout();
+        return {};
+      }
+      console.log('Auth token found:', token.substring(0, 20) + '...');
+      return {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+    };
+
   useEffect(() => {
     loadDashboardData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -73,9 +87,9 @@ const StaffDashboard = () => {
   const loadDashboardData = async () => {
     try {
       const [pendingRes, approvedRes, statsRes] = await Promise.all([
-        axios.get(`${API_BASE_URL}/api/staff/pending-donors`),
-        axios.get(`${API_BASE_URL}/api/staff/approved-donors`),
-        axios.get(`${API_BASE_URL}/api/staff/stats`),
+        axios.get(`${API_BASE_URL}/api/staff/pending-donors`,authHeader()),
+        axios.get(`${API_BASE_URL}/api/staff/approved-donors`,authHeader()),
+        axios.get(`${API_BASE_URL}/api/staff/stats`,authHeader()),
       ]);
 
       setPendingDonors(pendingRes.data || []);
@@ -94,7 +108,7 @@ const StaffDashboard = () => {
 
   const handleApproveDonor = async (donorId) => {
     try {
-      await api.post(`/api/staff/approve-donor/${donorId}`, {});
+      await axios.post(`${API_BASE_URL}/api/staff/approve-donor/${donorId}`, {} , authHeader());
       toast.success('Donor approved successfully');
       setOpenDonorDialog(false);
       await loadDashboardData();
@@ -113,7 +127,7 @@ const StaffDashboard = () => {
 
   const handleRejectDonor = async (donorId) => {
     try {
-      await api.post(`/api/staff/reject-donor/${donorId}`, { reason: rejectionReason });
+      await axios.post(`${API_BASE_URL}/api/staff/reject-donor/${donorId}`, { reason: rejectionReason } , authHeader());
       toast.success('Donor rejected');
       setOpenRejectDialog(false);
       setOpenDonorDialog(false);
@@ -129,7 +143,7 @@ const StaffDashboard = () => {
   const exportDonors = async () => {
     try {
       // Change to /api/admin/export/donors if that's your exporter
-      const response = await api.get('/api/staff/export-donors', { responseType: 'blob' });
+      const response = await axios.get(`${API_BASE_URL}/api/staff/export-donors`, { ...authHeader() , responseType: 'blob' });
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;

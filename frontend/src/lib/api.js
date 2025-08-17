@@ -1,19 +1,19 @@
 
-// // src/lib/api.js
-// import axios from 'axios';
+// src/lib/api.js
+import axios from 'axios';
 
-// export const API_BASE_URL = (import.meta.env.VITE_REACT_APP_API_URL|| 'http://localhost:3000').replace(/\/$/, '');
-//   // VITE_API_URL 
+export const API_BASE_URL = (import.meta.env.VITE_REACT_APP_API_URL|| 'http://localhost:3000').replace(/\/$/, '');
 
-// export const ABS = (rel) =>
-//   `${API_BASE_URL}/${String(rel || '').replace(/^\//, '')}`; // /uploads/x.png -> http://localhost:3000/uploads/x.png
 
-// const api = axios.create({ baseURL: API_BASE_URL });
+export const ABS = (rel) =>
+  `${API_BASE_URL}/${String(rel || '').replace(/^\//, '')}`;
 
-// api.interceptors.request.use((config) => {
-//   const t = localStorage.getItem('token');
-//   if (t) config.headers.Authorization = `Bearer ${t}`;
-//   return config;
-// });
+const api = axios.create({ baseURL: API_BASE_URL });
 
-// export default api;
+api.interceptors.request.use((config) => {
+  const t = localStorage.getItem('token');
+  if (t) config.headers.Authorization = `Bearer ${t}`;
+  return config;
+});
+
+export default api;

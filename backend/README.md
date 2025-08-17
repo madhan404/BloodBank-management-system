@@ -13,7 +13,7 @@
 npm install
 
 # Create environment file (optional)
-cp .env.example .env
+cp .env
 # Edit .env with your configuration
 ```
 
@@ -24,7 +24,7 @@ cp .env.example .env
 npm run dev
 ```
 
-#### Production Mode
+#### Production Mode (with auto-restart)
 ```bash
 npm start
 ```
@@ -43,7 +43,7 @@ Create a `.env` file in the backend directory:
 # Server Configuration
 PORT=3000
 HOST=localhost
-NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
 
 # MongoDB Configuration
 MONGODB_URI=mongodb://localhost:27017/bloodbank
@@ -54,6 +54,7 @@ JWT_SECRET=your-super-secret-jwt-key
 # Frontend URL (for CORS)
 FRONTEND_URL=http://localhost:5173
 ```
+
 
 ### Default Values
 - **Port**: 3000
